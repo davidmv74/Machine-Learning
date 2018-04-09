@@ -1,5 +1,6 @@
 import kivy
 from States import State
+
 class Main(object):
     def __init__(self):
         #set up instance variables only
@@ -35,10 +36,9 @@ class Main(object):
                 #log things
 
     def execute_state(self):
-        for key,state in self.states:
-            if self.current_state == key:
-                state.execute()
-                break
+        state = self.states.get(self.current_state, None)
+        if state:
+            state.execute()
 
     def swap_states(self):
         self.current_state = self.next_state
@@ -46,8 +46,10 @@ class Main(object):
 
     def update(self):
         self.display_panel.update()
+
     def render(self):
         self.display_panel.render()
+
     def get_input(self):
         #this will only be necessary if kivy doesn't multi-thread the UI components
         return
@@ -63,6 +65,7 @@ class Main(object):
         #perform other necessary actions to ensure smooth running
         #return false if any system has failed
         self.system_failure = False
+
     def recover(self):
         #attempt to reconnect hardware
         #attempt to re-launch scripts

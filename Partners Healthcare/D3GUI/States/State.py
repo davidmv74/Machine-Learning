@@ -48,15 +48,19 @@ class IDLEState(State):
     #refer to superclass documentation
     def _init_paths(self):
         return
+
     def _build_display(self):
         return
 
 class INITState(State):
     def __init__(self):
         super().__init__()
+
     def execute(self):
         return
+
     def _init_paths(self):
         return
+
     def _build_display(self):
         return
